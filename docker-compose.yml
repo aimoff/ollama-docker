@@ -1,0 +1,28 @@
+services:
+  ollama:
+    image: ollama:${TAG:-rocm}-${OS:-debian}
+    build:
+      context: ./${OS:-debian}
+      args:
+        UID: ${UID}
+        RENDER_GID: ${RENDER_GID}
+        USER_NAME: ${USER_NAME:-user}
+        LANG: ${LANG}
+    environment:
+#     - HSA_OVERRIDE_GFX_VERSION=10.3.0
+#     - GFX_ARCH=gfx1030
+      - MIOPEN_FIND_MODE=fast
+      - TZ=${TZ:-Asia/Tokyo}
+      - LANG=${LANG}
+    ports:
+      - "127.0.0.1:11434:11434"
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    tmpfs:
+      - /tmp
+    volumes:
+#     - /tmp:/tmp
+      - ./home_ollama:/home/ollama
+      - ./home_user:/home/${USER_NAME:-user}
+#     - ~:/home/${USER_NAME:-user}

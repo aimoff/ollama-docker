@@ -1,0 +1,5 @@
+Defaults:%sudo env_keep += "HSA_OVERRIDE_GFX_VERSION GFX_ARCH MIOPEN_FIND_MODE"
+
+# This line grants the any members of the sudo group
+# passwordless sudo privileges
+%sudo   ALL=(ALL) NOPASSWD:ALL

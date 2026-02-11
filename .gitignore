@@ -1,0 +1,5 @@
+# Docker files
+.env
+
+# Work directories
+home*
