@@ -48,5 +48,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/ollama.conf
 EXPOSE 11434
 USER $USER_NAME
 WORKDIR /home/$USER_NAME
-ENTRYPOINT []
-CMD ["/usr/bin/sudo", "/usr/bin/supervisord", "--nodaemon"]
+ENTRYPOINT ["/usr/bin/sudo", "/usr/bin/supervisord", "--nodaemon"]

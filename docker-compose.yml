@@ -1,6 +1,7 @@
 services:
   ollama:
     image: ollama:${TAG:-rocm}-${OS:-debian}
+    restart: unless-stopped
     build:
       context: ./${OS:-debian}
       args:
@@ -26,3 +27,23 @@ services:
       - ./home_ollama:/home/ollama
       - ./home_user:/home/${USER_NAME:-user}
 #     - ~:/home/${USER_NAME:-user}
+
+  webui:
+    image: ghcr.io/open-webui/open-webui:${WEBUI_TAG:-main}
+    depends_on:
+      - ollama
+    restart: unless-stopped
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:-}
+#     - WEBUI_AUTH=False
+#     - GLOBAL_LOG_LEVEL=DEBUG
+    ports:
+      - "127.0.0.1:3000:8080"
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./webui_data:/app/backend/data
+
+#volumes:
+#  webui_data:
