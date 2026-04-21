@@ -1,7 +1,12 @@
+「Ollama」には多数の問題点があるという [GIGAZINE の記事][GIGAZINE-20260417-ollama-license] を見る限り、
+**良識ある方は Ollama を使わない方が良い** と思います  
+このリポジトリもアーカイブに移します
+
 # Dockerfile for Ollama on Linux with AMD GPU
 [Ollama][] をローカル PC で実行するための Docker 環境構築ファイル群
 
 [Ollama]: https://ollama.com/
+[GIGAZINE-20260417-ollama-license]: https://gigazine.net/news/20260417-ollama-license/
 
 手元の Linux ホスト環境をあまりいじらずに [Ollama][] を試せるようにしたもの
 
